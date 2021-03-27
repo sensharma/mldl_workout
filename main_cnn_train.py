@@ -40,8 +40,6 @@ def train_epoch(train_loader, model, optimizer, criterion):
 
 
 def val_step(val_loader, model, optimizer, criterion):
-    # optimizer.zero_grad() #zero the parameter gradients
-    # model.eval()   # Set model to evaluate mode
     accuracy = 0
     with torch.no_grad():
         val_loss = 0
