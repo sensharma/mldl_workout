@@ -1,0 +1,9 @@
+.vscode
+__pycache__
+
+
+# datasets
+/data
+
+# trained models
+/models
