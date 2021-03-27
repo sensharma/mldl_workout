@@ -70,8 +70,6 @@ def get_loaders_cifar10(batch_size=4):
         root="./data", train=True, download=True, transform=transform
     )
 
-    train_set, val_set = torch.utils.data.random_split(dataset, [50000, 10000])
-
     trainloader = torch.utils.data.DataLoader(
         trainset, batch_size=batch_size, shuffle=True, num_workers=2
     )
