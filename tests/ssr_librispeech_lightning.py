@@ -28,16 +28,17 @@ PROJECT_ROOT = Path.joinpath(HOME, "mldl_workout")
 # CURRENT_DIR = Path.joinpath(PROJECT_ROOT, "tests", "dataloaders")
 CURRENT_DIR = os.path.dirname(__file__)
 
-MODELS_FOLDER = Path.joinpath(PROJECT_ROOT, "models")
+# MODELS_FOLDER = Path.joinpath(PROJECT_ROOT, "models")
 
+# DATA_FOLDER = "LibriSpeech"
 
-train_url = "train-clean-100"
-val_url = "dev-clean"
-test_url = "test-clean"
-# path = "/home/chirantan/datasets"    # GPU machine
-path = "/src/datasets"    # docker 
-model_path = "/home/chirantan/"
-folder = "LibriSpeech"
+# train_url = "train-clean-100"
+# val_url = "dev-clean"
+# test_url = "test-clean"
+# # path = "/home/chirantan/datasets"    # GPU machine
+# path = "/src/datasets"    # docker 
+# model_path = "/home/chirantan/"
+# folder = "LibriSpeech"
 
 with open(f'{CURRENT_DIR}/dataloaders/libri_conf.yaml', "r") as conf_file:
     cfg = yaml.safe_load(conf_file)
