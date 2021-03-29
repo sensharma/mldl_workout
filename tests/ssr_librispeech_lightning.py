@@ -3,8 +3,10 @@ from functools import partial
 from pathlib import Path
 import os
 import yaml
+# https://pyyaml.org/wiki/PyYAMLDocumentation
 import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
+
 
 import pytorch_lightning as pl
 from pytorch_lightning.trainer import trainer
@@ -261,7 +263,7 @@ def main():
 
     # global_step = 1   # total batches, across epochs etc.
     lae = LSTMEncoder(h_params)
-    libri_dm = LibriSpeechDataModule() 
+    libri_dm = LibriSpeechDataModule()
 
     stage = ''   # debug or anything else
 
