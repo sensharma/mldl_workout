@@ -1,0 +1,16 @@
+* Extensions
+    ☐ To Do Tasks
+    ☐ Todo train_epoch_means_tensor
+* Naming
+    ☐ CIFAR10 Dataloader, not CNN Dataloader
+* Programming Points
+    ☐ pathlib paths instead of raw paths
+    ☐ all train/val variables as global variables -> shows up in outline
+    ☐ param_config file -> pyyaml
+        ☐ hyper_params
+        ☐ model params
+    ☐ fstring instead of .format
+    ☐ Tip - data .tar can be deleted after initial unpacking
+* Model related
+    ☐ save best val score model, not necessarily at end of training
+    ☐ monitoring val loss

@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
-import pathlib
+from pathlib import Path
+from pytorch_lightning import PROJECT_ROOT
 
 import torch.optim as optim
 import torchvision.transforms as transforms
@@ -11,7 +12,14 @@ from tqdm import tqdm
 from tests.cnn_dataloader import get_loaders_cifar10, TorchVisionDataset
 from tests.cnn_model import LeNet5
 
-MODELS_FOLDER = './models/'
+
+HOME = Path.home()   # Note, this is not the standard /home/ dir in linux/mac, it is /home/css/ dir
+DATA_FOLDER = Path.joinpath(HOME, "datasets")
+PROJECT_ROOT = Path.joinpath(HOME, "mldl_workout") 
+# CWD = Path.cwd()  #another useful fn
+MODELS_FOLDER = Path.joinpath(PROJECT_ROOT, "models")
+# DATA_FOLDER = Path.joinpath(CWD, "data")
+# MODELS_FOLDER = './models/'
 SAVE_MODEL = True
 DATASET_NAME = 'CIFAR10'
 EPOCHS = 10
@@ -63,8 +71,12 @@ if __name__ == "__main__":
     transform = transforms.Compose(
         [transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    torchvision_dataset.init_train_dataset(root='./data', download=True, transform=transform)
-    train_loader, val_loader = torchvision_dataset.get_train_dataloader(batch_size=32, pin_memory=True, val_split=0.1, num_workers=1)
+    # torchvision_dataset.init_train_dataset(root='./data', download=True, transform=transform)
+    torchvision_dataset.init_train_dataset(root=DATA_FOLDER, download=True, transform=transform)
+    train_loader, val_loader = torchvision_dataset.get_train_dataloader(batch_size=32, 
+                                                                        pin_memory=True, 
+                                                                        val_split=0.1, 
+                                                                        num_workers=6)
 
     model = LeNet5()
     model.to(device)
