@@ -7,3 +7,6 @@ __pycache__
 
 # trained models
 /models
+
+# pytorch lightning logs
+/lightning_logs

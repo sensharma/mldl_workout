@@ -34,7 +34,8 @@ with open(f'{CURRENT_DIR}/libri_conf.yaml', "r") as conf_file:
 # https://github.com/yaml/pyyaml/wiki/PyYAML-yaml.load(input)-Deprecation
 
 h_params = cfg["h_params"]
-d_params = cfg["dataloader_params"]
+dl_params = cfg["dataloader_params"]
+ds_params = cfg["dataset_params"]
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -74,13 +75,13 @@ class LibriSpeechDataModule(pl.LightningDataModule):
         # Do not use it to assign state (self.x = y).
 
         LIBRISPEECH(
-            self.datadir, folder_in_archive=DATA_FOLDER, url=d_params["train_url"], download=True
+            self.datadir, folder_in_archive=DATA_FOLDER, url=ds_params["train_url"], download=True
         )
         LIBRISPEECH(
-            self.datadir, folder_in_archive=DATA_FOLDER, url=d_params["val_url"], download=True
+            self.datadir, folder_in_archive=DATA_FOLDER, url=ds_params["val_url"], download=True
         )
         LIBRISPEECH(
-            self.datadir, folder_in_archive=DATA_FOLDER, url=d_params["test_url"], download=True
+            self.datadir, folder_in_archive=DATA_FOLDER, url=ds_params["test_url"], download=True
         )
 
     def setup(self, stage=None):
@@ -88,18 +89,18 @@ class LibriSpeechDataModule(pl.LightningDataModule):
         if stage == 'fit' or stage is None:
             self.libri_train = LIBRISPEECH(self.datadir,
                                            folder_in_archive=DATA_FOLDER,
-                                           url=d_params["train_url"],
+                                           url=ds_params["train_url"],
                                            )
 
             self.libri_val = LIBRISPEECH(self.datadir,
                                          folder_in_archive=DATA_FOLDER,
-                                         url=d_params["val_url"],
+                                         url=ds_params["val_url"],
                                          )
 
         if stage == 'test' or stage is None:
             self.libri_test = LIBRISPEECH(self.datadir,
                                           folder_in_archive=DATA_FOLDER,
-                                          url=d_params["test_url"],
+                                          url=ds_params["test_url"],
                                           )
 
     @staticmethod

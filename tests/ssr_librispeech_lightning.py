@@ -270,7 +270,7 @@ def main():
     if stage == 'debug':
         trainer = pl.Trainer(fast_dev_run=True, gpus=1)
     else:
-        trainer = pl.Trainer(max_epochs=100,
+        trainer = pl.Trainer(max_epochs=5,
                             gradient_clip_val=h_params["clip_threshold"],
                             gpus=1,
                             #  check_val_every_n_epoch=1,
